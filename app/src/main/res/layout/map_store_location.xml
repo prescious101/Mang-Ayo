@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dodgerBlue"
+    android:orientation="vertical"
+    android:weightSum="10"
+    map:mapType="normal"
+    tools:context=".FindMechanicShopController">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="@color/crimsonRed"
+        android:gravity="center"
+        android:text="CLICK MARKER TO SEE FULL DETAILS"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:weightSum="1" />
+
+    <fragment
+        android:id="@+id/storeLocationMap"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="630dp"
+        android:layout_margin="10dp"
+        android:weightSum="8" />
+
+    <Button
+        android:id="@+id/btnMechanicBackToFill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:backgroundTint="@color/crimsonRed"
+        android:text="BACK"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:weightSum="1" />
+
+
+</LinearLayout>

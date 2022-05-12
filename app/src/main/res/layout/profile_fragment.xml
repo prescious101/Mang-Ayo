@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/dodgerBlue"
+    tools:context=".HomepageController">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="25dp"
+            android:orientation="vertical"
+            android:layout_marginRight="35dp">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/mang_ayo_logo"
+                    android:layout_gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/txtProfileName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="25dp"
+                    android:textSize="30dp"
+                    android:hint="name"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:id="@+id/txtProfileEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="25dp"
+                    android:textSize="30dp"
+                    android:hint="email"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/txtProfilePhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="25dp"
+                    android:textSize="30dp"
+                    android:hint="Phone number"
+                    android:textColor="@color/white" />
+
+
+
+            <Button
+                    android:id="@+id/btnTransHistory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="25dp"
+                    android:textSize="20dp"
+                android:textColor="@color/white"
+                    android:backgroundTint="@color/crimsonRed"
+                    android:text="Transaction History"
+                    tools:layout_editor_absoluteX="160dp"
+                    tools:layout_editor_absoluteY="122dp" />
+
+            <Button
+                android:id="@+id/btnReviewMechanics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/crimsonRed"
+                android:text="Feedback Mechanics"
+                tools:layout_editor_absoluteX="160dp"
+                tools:layout_editor_absoluteY="122dp" />
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

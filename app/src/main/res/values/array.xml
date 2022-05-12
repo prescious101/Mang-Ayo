@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="userTypes">
+        <item>AUTO-MECHANIC</item>
+        <item>VEHICLE OWNEr</item>
+    </string-array>
+</resources>

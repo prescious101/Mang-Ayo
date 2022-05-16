@@ -70,7 +70,7 @@ public class FeedbackController extends AppCompatActivity {
     }
 
     public void getlistofMechanics() {
-        String urlString = "http://192.168.254.104:9999/Mangayo-Admin/getListOfMechanic.php";
+        String urlString = "http://192.168.254.114:9999/Mangayo-Admin/getListOfMechanic.php";
         try {
             URL url = new URL(urlString);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();

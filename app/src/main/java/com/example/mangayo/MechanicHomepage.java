@@ -169,7 +169,7 @@ public class MechanicHomepage extends AppCompatActivity {
     }
 
     public void getUserData(){
-        urlString="http://192.168.254.104:9999/Mangayo-Admin/getUserProfile.php?email="+email+"&userType="+type;
+        urlString="http://192.168.254.114:9999/Mangayo-Admin/getUserProfile.php?email="+email+"&userType="+type;
         try {
             Log.d("URL",urlString);
             URL url =new URL(urlString);

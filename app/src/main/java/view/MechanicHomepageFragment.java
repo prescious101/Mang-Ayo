@@ -29,7 +29,7 @@ import com.example.mangayo.R;
 
 public class MechanicHomepageFragment extends Fragment {
     private String address,lat,lng,mechanic_id;
-    private String urlString = "http://192.168.254.104:9999/Mangayo-Admin/addStoreLocation.php";
+    private String urlString = "http://192.168.254.114:9999/Mangayo-Admin/addStoreLocation.php";
     private SharedPreferences sharedPreferences;
     private TextView setLocation;
 

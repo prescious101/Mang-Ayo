@@ -83,19 +83,20 @@ public class WriteFeedbackController extends AppCompatActivity {
     }
 
     public void getlistofMechanics() {
-        urlString+="?user_id="+user_id+"&mechanic_id="+mechanic_id+"&feedback_description="+
-                feedback_description+"&feedback_score="+feedback_score+"&feedback_date="+date;
         feedback_description = writeReview.getText().toString().trim();
         feedback_score = getScore.getSelectedItem().toString();
 
+        urlString+="?user_id="+user_id+"&mechanic_id="+mechanic_id+"&feedback_description="+
+                feedback_description+"&feedback_score="+feedback_score+"&feedback_date="+date;
+
+        System.out.println(urlString);
         try {
             URL url = new URL(urlString);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String status = br.readLine();
             Log.d("Status", "getListofMechanics: "+ status);
-            br.close();
-            conn.disconnect();
+            br.close(); conn.disconnect();
             Toast.makeText(WriteFeedbackController.this, status, Toast.LENGTH_SHORT).show();
         } catch (MalformedURLException e) {
             e.printStackTrace();

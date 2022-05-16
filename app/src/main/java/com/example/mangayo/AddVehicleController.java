@@ -62,8 +62,6 @@ public class AddVehicleController extends AppCompatActivity {
                 brand = vehicleBrand.getText().toString().trim();
                 model = vehicleModel.getText().toString().trim();
                 fuel = fuelType.getText().toString().trim();
-
-
                 setSaveVehicleData();
             }
         });

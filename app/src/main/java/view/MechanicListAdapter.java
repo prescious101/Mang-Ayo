@@ -47,13 +47,12 @@ public class MechanicListAdapter extends BaseAdapter {
             mechanicListHandler.email = view.findViewById(R.id.txtMechanicSpecialty);
             mechanicListHandler.specialty = view.findViewById(R.id.txtMechanicSpecialty);
             view.setTag(mechanicListHandler);
-        } else {
-            mechanicListHandler = (MechanicListHandler) view.getTag();
+        } else {mechanicListHandler = (MechanicListHandler) view.getTag();}
             mechanicListHandler.name.setText("Name: "+list.get(i).getfName()+" "+list.get(i).getlName());
             mechanicListHandler.address.setText("Address: "+list.get(i).getAddress());
             mechanicListHandler.email.setText("Email: "+list.get(i).getEmail());
             mechanicListHandler.specialty.setText("Specialty: "+list.get(i).getSpecialty());
-        }
+
         return view;
     }
 

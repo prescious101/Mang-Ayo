@@ -44,6 +44,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,7 +52,7 @@ import model.LocationModel;
 
 public class MapsMarkerActivity extends AppCompatActivity implements OnMapReadyCallback {
     private Marker localMarker = null;
-    private String  lat, lng,lat1,lng1;
+    private String lat, lng, lat1, lng1;
     private LatLng currentLocation;
     private List<Marker> markers;
     private ArrayList<LocationModel> list = new ArrayList<LocationModel>();
@@ -68,6 +69,7 @@ public class MapsMarkerActivity extends AppCompatActivity implements OnMapReadyC
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         getAutoMechanicLocations();
+
 
         // Get the SupportMapFragment and request notification when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -88,50 +90,67 @@ public class MapsMarkerActivity extends AppCompatActivity implements OnMapReadyC
                 String mechanic_id = json.getString("mechanic_id");
                 list.add(new LocationModel(location_id, latitude, longitude, address, mechanic_id));
 
-                currentLocation  = new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
+                currentLocation = new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
                 localMarker = googleMap.addMarker(new MarkerOptions()
                         .position(currentLocation)
                         .icon(BitmapDescriptorFactory
                                 .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                        .title("This Mechanic is near you"));
+                        .title("Mechanic"));
                 markers.add(localMarker);
 
-                googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-                    @Override
-                    public void onMapClick(@NonNull LatLng latLng) {
-                        lat1 = String.valueOf(latLng.latitude);
-                        lng1 = String.valueOf(latLng.longitude);
-                       if(lat1 != lat && lng1 != lng){
-                           confirmationDialogue();
-                       }else
-                           Toast.makeText(MapsMarkerActivity.this, "This is Your location", Toast.LENGTH_SHORT).show();
-                    }
-                });
             }
         } catch (JSONException e) {
             e.printStackTrace();
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             e.printStackTrace();
         }
 
+
+        googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(@NonNull Marker marker) {
+                LatLng pos = marker.getPosition();
+                if (marker.getTitle().equals("Mechanic")) {
+                    confirmationDialogue();
+//                    for (int i = 0; i < list.size(); i++) {
+//                        Log.d("TAG", "onMarkerClick: " + list.get(i).getLatitude().toString());
+//                        Log.d("TAG", "onMarkerClickMarkers: " + String.valueOf(pos.latitude));
+//
+//
+//                        if (String.valueOf(pos.latitude) == list.get(i).getLatitude().toString()) {
+//
+//                            Log.d("TAG", "onMarkerClick: CALLED");
+//                            break;
+//                        }
+//                    }
+
+                } else
+                    Toast.makeText(MapsMarkerActivity.this, "This is Your location", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+
     }
 
-    public void confirmationDialogue(){
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("You wanted to make decision");
-                alertDialogBuilder.setPositiveButton("YES",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface arg0, int arg1) {
-                              intent = new Intent(MapsMarkerActivity.this, MechanicDetails.class);
-                              startActivity(intent); finish();
-                            }
-                        });
 
-        alertDialogBuilder.setNegativeButton("NO",new DialogInterface.OnClickListener() {
+    public void confirmationDialogue() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("Choose this Mechanic?");
+        alertDialogBuilder.setPositiveButton("YES",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        intent = new Intent(MapsMarkerActivity.this, MechanicDetails.class);
+//                        intent.putExtra("mechanic_id", list.get(position).getMechanic_id());
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+
+        alertDialogBuilder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                finish();
+
             }
         });
 
@@ -152,7 +171,7 @@ public class MapsMarkerActivity extends AppCompatActivity implements OnMapReadyC
             locationsArray = new JSONArray(locations);
             Log.d("ARRAYLIST", "LIST: " + locationsArray.toString());
 
-            if(locationsArray!=null)
+            if (locationsArray != null)
                 Toast.makeText(MapsMarkerActivity.this, "Mechanics Found!", Toast.LENGTH_SHORT).show();
             else
                 Toast.makeText(MapsMarkerActivity.this, "No Mechanics in the Area", Toast.LENGTH_SHORT).show();
@@ -167,7 +186,7 @@ public class MapsMarkerActivity extends AppCompatActivity implements OnMapReadyC
 
     }
 
-    public void cameraFocus(GoogleMap googleMap){
+    public void cameraFocus(GoogleMap googleMap) {
         sharedPreferences = MapsMarkerActivity.this.getSharedPreferences("MySharedPref", Context.MODE_APPEND);
 
         lat = sharedPreferences.getString("latitude", "");

@@ -49,14 +49,14 @@ public class TransactionAdapter extends BaseAdapter {
             transactionHandler.payType = view.findViewById(R.id.txtPaymentType);
             transactionHandler.payCost = view.findViewById(R.id.txtPaymentCost);
             view.setTag(transactionHandler);
-        } else {
-            transactionHandler = (TransactionHandler) view.getTag();
+        } else { transactionHandler = (TransactionHandler) view.getTag(); }
+
             transactionHandler.transNum.setText("Transaction No.: "+list.get(i).getTransaction_id());
             transactionHandler.date.setText("Date Issued: "+list.get(i).getDate_service());
             transactionHandler.serviceType.setText("Service Type: "+list.get(i).getService_type());
             transactionHandler.payType.setText("Payment Type: "+list.get(i).getPayment_type());
-            transactionHandler.payCost.setText("Payment Cost: "+list.get(i).getService_cost());
-        }
+            transactionHandler.payCost.setText("Payment Cost: "+list.get(i).getService_cost()+" PHP");
+
         return view;
     }
 

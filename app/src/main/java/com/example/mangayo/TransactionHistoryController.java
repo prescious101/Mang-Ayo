@@ -53,7 +53,9 @@ public class TransactionHistoryController extends AppCompatActivity {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
         getTransactionHistory();
+
 
     }
 
@@ -66,13 +68,10 @@ public class TransactionHistoryController extends AppCompatActivity {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String transactions = br.readLine();
-            Log.d("TRANSACTION", "getTransactionHistory: "+ transactions);
-            br.close();
-            conn.disconnect();
+            br.close();conn.disconnect();
 
-            JSONArray transactionArray = new JSONArray(transactions);
-            Log.d("Profile", "JSONARRAY: " + transactionArray);
-
+            JSONObject json1 = new JSONObject(transactions);
+            JSONArray transactionArray = json1.getJSONArray("transaction");
             for (int i = 0; i < transactionArray.length(); i++) {
                 JSONObject json = transactionArray.getJSONObject(i);
                 String transNum = json.getString("transaction_id");
@@ -80,11 +79,10 @@ public class TransactionHistoryController extends AppCompatActivity {
                 String serviceType = json.getString("service_type");
                 String payCost = json.getString("service_cost");
                 String payType = json.getString("payment_type");
-                list.add(new TransactionModel(transNum, date, serviceType, payType, payCost));
+                TransactionModel model = new TransactionModel(transNum, date, serviceType, payType, payCost);
+                list.add(model);
             }
-
-            Log.d("ARRAYLIST", "LIST: "+list.get(0).getTransaction_id()+list.get(0).getDate_service()
-                    +list.get(0).getPayment_type()+list.get(0).getService_type()+list.get(0).getService_type());
+            transactionAdapter.notifyDataSetChanged();
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

@@ -83,7 +83,7 @@ public class ProfileFragment extends Fragment {
 
 
     public void getUserData() {
-        String urlString = "http://192.168.254.104:9999/Mangayo-Admin/getUserProfile.php?email="+email+"&userType="+type;
+        String urlString = "http://192.168.1.217:9999/Mangayo-Admin/getUserProfile.php?email="+email+"&userType="+type;
         try {
             URL url = new URL(urlString);
             HttpURLConnection conn= (HttpURLConnection) url.openConnection();

@@ -58,6 +58,9 @@ public class HomepageController extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
+
+        getSupportActionBar().hide();
+
         bottomNavigationView = findViewById(R.id.bottom_navigation_user);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
         bottomNavigationView.setSelectedItemId(R.id.home);

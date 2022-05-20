@@ -10,17 +10,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:textColor="@color/white"
-            android:background="@color/crimsonRed"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:text="ADD VEHICLE"
-            android:ems="10"/>
-
         <EditText
             android:id="@+id/edtVehicleBrand"
             android:layout_width="match_parent"

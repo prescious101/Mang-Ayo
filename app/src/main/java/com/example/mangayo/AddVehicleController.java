@@ -46,6 +46,9 @@ public class AddVehicleController extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_vehicle);
 
+        getSupportActionBar().setTitle("ADD VEHICLE");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         vehicleBrand = findViewById(R.id.edtVehicleBrand);
         vehicleModel = findViewById(R.id.edtVehicleModel);
         fuelType = findViewById(R.id.edtFuelType);
@@ -103,7 +106,7 @@ public class AddVehicleController extends AppCompatActivity {
     }
 
     public void setSaveVehicleData(){
-        urlString="http://192.168.254.104:9999/Mangayo-Admin/mobileAddVehicle.php?brand="+brand+"&model="+model+"&fuel="+fuel+
+        urlString="http://192.168.1.217:9999/Mangayo-Admin/mobileAddVehicle.php?brand="+brand+"&model="+model+"&fuel="+fuel+
                 "&vehicle_image="+fuel;
         try {
             Log.d("URL",urlString);

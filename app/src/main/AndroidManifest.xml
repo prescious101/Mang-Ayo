@@ -60,7 +60,7 @@
         <activity android:name=".LoginController" />
         <activity android:name=".HomepageController" />
         <activity android:name=".RegisterController" />
-        <activity android:name=".AddVehicleController" />
+        <activity android:name=".AddVehicleController" android:parentActivityName=".HomepageController" />
         <activity android:name=".TransactionHistoryController" />
         <activity android:name=".FindMechanicShopController" />
         <activity android:name=".FeedbackController" />

@@ -42,6 +42,9 @@ public class LoginController extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
+        getSupportActionBar().hide();
+
         radioGroup = findViewById(R.id.radUserType);
         radUser = findViewById(R.id.radUser);
         radMechanic = findViewById(R.id.radMechanic);

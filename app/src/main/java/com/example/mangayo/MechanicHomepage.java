@@ -49,7 +49,7 @@ public class MechanicHomepage extends AppCompatActivity {
     public static final int DEFAULT_UPDATE_INTERVAL = 30;
     public static final int PERMISSIONS_FINE_LOCATION = 99;
 
-    private String urlString = "http://192.168.50.169:9999/Mangayo-Admin/mobile/addMechanicLocation.php";
+    private String urlString = "http://192.168.1.217:9999/Mangayo-Admin/mobile/addMechanicLocation.php";
 
 
     private SharedPreferences sharedPreferences;
@@ -171,7 +171,7 @@ public class MechanicHomepage extends AppCompatActivity {
     }
 
     public void getUserData(){
-        urlString2 += "?latitude=" + lat + "&longitude=" + lng + "&address=" + address + "&mechanic_id=" + mechanic_id;
+        urlString += "?latitude=" + lat + "&longitude=" + lng + "&address=" + mAddress + "&mechanic_id=" + mechanic_id;
         try {
             Log.d("URL",urlString);
             URL url =new URL(urlString);

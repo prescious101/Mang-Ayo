@@ -52,7 +52,7 @@ public class MechanicDetails extends AppCompatActivity {
 
 
     public void bookMehanic(){
-        urlString="http://192.168.254.104:9999/Mangayo-Admin/mobileServices.php";
+        urlString="http://192.168.1.217:9999/Mangayo-Admin/mobileServices.php";
         try {
             urlString+="?insertName="+services+"&insertDescription="+desc+"&insertCost="+cost+"&user_id="+user_id+"&mechanic_id="+mechanic_id;
             Log.d("URL",urlString);

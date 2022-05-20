@@ -50,7 +50,7 @@ public class WriteFeedbackController extends AppCompatActivity {
     private EditText writeReview; private Spinner getScore; private Button addReview;
 
     private String user_id="1",mechanic_id,feedback_description,feedback_score,date;
-    private String urlString = "http://192.168.254.104:9999/Mangayo-Admin/sendFeedback.php";
+    private String urlString = "http://192.168.1.217:9999/Mangayo-Admin/sendFeedback.php";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

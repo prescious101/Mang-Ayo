@@ -42,7 +42,7 @@ public class ServiceFragment extends Fragment {
     private EditText serviceDescription;
     private TextView serviceCost;
     private Button addService;
-    private String urlString = "http://192.168.254.104:9999/Mangayo-Admin/mobileServices.php";
+    private String urlString = "http://192.168.1.217:9999/Mangayo-Admin/mobileServices.php";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -102,11 +102,11 @@ public class ServiceFragment extends Fragment {
         serviceType.setAdapter(adapter);
     }
 
-    public void toMaps(String services,String desc, String cost){
-        intent = new Intent(getContext(),MapsMarkerActivity.class);
-        intent.putExtra("services",services);intent.putExtra("desc",desc);intent.putExtra("cost",cost);
+    public void toMaps(String services,String desc, String cost) {
+        intent = new Intent(getContext(), MapsMarkerActivity.class);
+        intent.putExtra("services", services);
+        intent.putExtra("desc", desc);
+        intent.putExtra("cost", cost);
         startActivity(intent);
-        getActivity().finish();
     }
-
 }

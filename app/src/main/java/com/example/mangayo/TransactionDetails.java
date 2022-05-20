@@ -49,7 +49,7 @@ public class TransactionDetails extends AppCompatActivity {
 //    }
 
     public void getService(){
-        String urlString="http://192.168.254.114:9999/Mangayo-Admin/mobile/getUserProfile.php?email="+email+"&userType="+type;
+        String urlString="http://192.168.1.217:9999/Mangayo-Admin/mobile/getUserProfile.php?email="+email+"&userType="+type;
         try {
             URL url =new URL(urlString);
             HttpURLConnection conn= (HttpURLConnection) url.openConnection();

@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.mangayo.R;
@@ -51,6 +52,8 @@ import java.util.Map;
 import model.LocationModel;
 
 public class MapsMarkerActivity extends AppCompatActivity implements OnMapReadyCallback {
+
+    com.example.mangayo.ServiceFragment servicesFragment = new com.example.mangayo.ServiceFragment();
     private Marker localMarker = null;
     private String lat, lng, lat1, lng1,mechanic_id,services,desc,cost,user_id="1";
     private LatLng mechanicsLocation;
@@ -60,11 +63,17 @@ public class MapsMarkerActivity extends AppCompatActivity implements OnMapReadyC
     private LatLngBounds.Builder builder = new LatLngBounds.Builder();
     private JSONArray locationsArray;
     private Intent intent;private Bundle bundle;
+    private Button mapBackBTN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+
+        getSupportActionBar().setTitle("Locate Mechanics");
+
+
         markers = new ArrayList<Marker>();
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -155,7 +164,7 @@ public class MapsMarkerActivity extends AppCompatActivity implements OnMapReadyC
     }
 
     public void getAutoMechanicLocations() {
-        String urlString = "http://192.168.254.104:9999/Mangayo-Admin/getNearbyMechanicLocation.php";
+        String urlString = "http://192.168.1.217:9999/Mangayo-Admin/getNearbyMechanicLocation.php";
         try {
             URL url = new URL(urlString);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -207,5 +216,7 @@ public class MapsMarkerActivity extends AppCompatActivity implements OnMapReadyC
         desc = bundle.getString("desc");
         cost = bundle.getString("cost");
     }
+
+
 
 }

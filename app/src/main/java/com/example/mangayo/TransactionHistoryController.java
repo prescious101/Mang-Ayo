@@ -62,7 +62,7 @@ public class TransactionHistoryController extends AppCompatActivity {
 
     public void getTransactionHistory() {
         String uid = "1";
-        String urlString = "http://192.168.254.104:9999/Mangayo-Admin/getTransactionHistory.php?userID="+uid;
+        String urlString = "http://192.168.1.217:9999/Mangayo-Admin/getTransactionHistory.php?userID="+uid;
         try {
             URL url = new URL(urlString);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();

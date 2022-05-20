@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().hide();
+
         if(haveNetworkConnection()){
             if(locationEnabled()){
                 Thread background = new Thread() {

@@ -34,7 +34,7 @@ public class RegistrationUsersFragment extends Fragment {
     private EditText usernameEDT, passwordEDT, firstNameEDT, lastNameEDT, phoneNumberEDT, addressEDT;
     private Button registerUserBTN, backBTN;
     private int status = 0;
-    private String urlString = "http://192.168.1.217:9999/Mangayo-Admin/mobileRegisterUser.php";
+    private String urlString = "http://192.168.1.217:9999/Mangayo-Admin/mobile/mobileRegisterUser.php";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

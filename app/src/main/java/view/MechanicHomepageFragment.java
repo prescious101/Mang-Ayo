@@ -134,12 +134,11 @@ public class MechanicHomepageFragment extends Fragment implements OnMapReadyCall
     }
 
     public void setCurrentMechanicLocation() {
-        urlString += "?latitude=" + lat + "&longitude=" + lng + "&address=" + address + "&mechanic_id=" + mechanic_id;
-        String urlString2 = "http://192.168.254.104:9999/Mangayo-Admin/mobile/getUserLocation.php";
+        String urlString2 = "http://192.168.1.217:9999/Mangayo-Admin/mobile/getUserLocation.php";
         urlString2 += "&user_id=" + user_id;
 
         try {
-            URL url = new URL(urlString);
+            URL url = new URL(urlString2);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String message = br.readLine();

@@ -45,6 +45,8 @@ public class RegistrationUsersFragment extends Fragment {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+        getSharedPref();
+
         registerUserBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,6 +113,9 @@ public class RegistrationUsersFragment extends Fragment {
                 String message = br.readLine();
                 Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
                 br.close();conn.disconnect();toLoginController();
+                if(message == "SUCCESSFULLY ADDED") {
+                    toLoginController();
+                }
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {

@@ -41,6 +41,7 @@ public class RegisterController extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
         spinner = (Spinner) findViewById(R.id.spnUser);
+        getSupportActionBar().hide();
         fillSpinner();
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

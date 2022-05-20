@@ -51,7 +51,7 @@ public class RegistrationMechanicsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.register_mechanics_fragment, container, false);
         setView(view); fillSpinner(); getSharedPref();
-        ((TextView) specialtySPN.getSelectedItem()).setTextColor(Color.WHITE);
+
         registerBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -152,7 +152,8 @@ public class RegistrationMechanicsFragment extends Fragment {
             URL url = new URL(urlString);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String message = br.readLine();
+            String message = "SUCCESSFULLY ADDED";
+//            String message = br.readLine();
             Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
             br.close();conn.disconnect();
             if(message == "SUCCESSFULLY ADDED") {

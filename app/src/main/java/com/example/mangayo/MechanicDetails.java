@@ -25,11 +25,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class MechanicDetails extends AppCompatActivity {
-    private String mechanic_id,urlString,message;
-    private Intent intent;
+    private String urlString,message,mechanic_id,services,desc,cost,user_id;
+    private Intent intent;private Bundle bundle;
     private TextView nameTXT,emailTXT,phoneTXT,specialtyTXT;
     private Button backBTN,bookBTN;
-//    private Bundle extras = getIntent().getExtras();;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,7 +40,7 @@ public class MechanicDetails extends AppCompatActivity {
         specialtyTXT = findViewById(R.id.txtMDSpecialty);
         backBTN = findViewById(R.id.btnBackToMechanicsLoc);
         bookBTN = findViewById(R.id.btnConfirmBook);
-
+        bundle = getIntent().getExtras();
         bookBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,30 +48,20 @@ public class MechanicDetails extends AppCompatActivity {
             }
         });
 
-//        if (extras != null) {
-//            mechanic_id = extras.getString("mechanic_id");
-//            Log.d("Mechanic_id", "onCreate: "+mechanic_id);
-//        }
-//
-//        Toast.makeText(MechanicDetails.this, "The mechanic id is "+ mechanic_id, Toast.LENGTH_SHORT).show();
-
     }
 
 
     public void bookMehanic(){
-        urlString="http://192.168.254.104:9999/Mangayo-Admin/sendSmsNotif.php";
+        urlString="http://192.168.254.104:9999/Mangayo-Admin/mobileServices.php";
         try {
+            urlString+="?insertName="+services+"&insertDescription="+desc+"&insertCost="+cost+"&user_id="+user_id+"&mechanic_id="+mechanic_id;
             Log.d("URL",urlString);
             URL url=new URL(urlString);
             HttpURLConnection conn= (HttpURLConnection) url.openConnection();
             BufferedReader br=new BufferedReader(new InputStreamReader(conn.getInputStream()));
             message=br.readLine();
-            Log.d("LoginController", "addVehicle: "+message);
-            Toast.makeText(MechanicDetails.this,message, Toast.LENGTH_SHORT).show();
+            Toast.makeText(MechanicDetails.this,message,Toast.LENGTH_SHORT).show();
             br.close();conn.disconnect();
-            intent = new Intent(MechanicDetails.this, HomepageController.class);
-            startActivity(intent);
-            finish();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {

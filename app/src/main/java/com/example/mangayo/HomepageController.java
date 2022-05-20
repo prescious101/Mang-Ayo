@@ -108,9 +108,9 @@ public class HomepageController extends AppCompatActivity {
             case PERMISSIONS_FINE_LOCATION:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     updateGPS();
-                    Toast.makeText(this, "PERMISSION GRANTED", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, "Mang-Ayo needs permissions to be granted to work properly", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
                 break;
         }
@@ -128,7 +128,7 @@ public class HomepageController extends AppCompatActivity {
                         List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                         sharedPref(addresses.get(0).getAddressLine(0),String.valueOf(addresses.get(0).getLatitude()),String.valueOf(addresses.get(0).getLongitude()));
                     } catch (Exception e) {
-                        Log.e("TAG", "updateUIValues: ", e);
+                        e.printStackTrace();
                     }
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -139,7 +139,6 @@ public class HomepageController extends AppCompatActivity {
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_FINE_LOCATION);
-                Toast.makeText(this, "Called?", Toast.LENGTH_SHORT).show();
             }
         }
     }

@@ -36,6 +36,15 @@
             android:background="@color/white"
             android:textSize="15dp"
             android:gravity="center"/>
+
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/mechanicMap"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            />
+
+
     </LinearLayout>
 
 

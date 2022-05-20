@@ -10,6 +10,7 @@
     <uses-permission android:name="package_name.permission.MAPS_RECEIVE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <application
         android:allowBackup="true"
@@ -67,8 +68,11 @@
         <activity android:name=".MapsMarkerActivity" />
         <activity android:name=".MechanicHomepage" />
         <activity android:name=".MechanicDetails"/>
+        <activity android:name=".TransactionDetails"/>
+        <activity android:name=".UserServiceDetails"/>
 
-
+        <service android:name="Service.BackgroundService"/>
+        <service android:name="Service.ForegroundService"/>
     </application>
 
 </manifest>

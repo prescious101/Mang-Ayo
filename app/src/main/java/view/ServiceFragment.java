@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceFragment extends Fragment {
+    private String services,desc,cost;
     private Intent intent;
     private View view;
     private Spinner serviceType;
@@ -52,7 +53,6 @@ public class ServiceFragment extends Fragment {
         serviceDescription = (EditText) view.findViewById(R.id.editTextTextMultiLine);
         serviceCost = (TextView) view.findViewById(R.id.txtServiceCost);
         addService = (Button) view.findViewById(R.id.btnAddService);
-
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -81,51 +81,30 @@ public class ServiceFragment extends Fragment {
         addService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String services,desc,cost;
                 services = serviceType.getSelectedItem().toString().trim();
                 desc = serviceDescription.getText().toString().trim();
                 cost = serviceCost.getText().toString().replaceAll(" PHP","").trim();
-
-                try {
-                    urlString+="?insertName="+services+"&insertDescription="+desc+"&insertCost="+cost;
-                    Log.d("URL",urlString);
-                    URL url=new URL(urlString);
-                    HttpURLConnection conn= (HttpURLConnection) url.openConnection();
-                    BufferedReader br=new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                    String message=br.readLine();
-                    Toast.makeText(getContext(),message,Toast.LENGTH_SHORT).show();
-                    Log.d("Service Fragment", "onClick: "+message);
-                    br.close();conn.disconnect();
-                    toMaps();
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                toMaps(services,desc,cost);
             }
         });
-
         return view;
     }
 
 
     public void fillSpinner() {
         ArrayAdapter<String> adapter;
-        List<String> list;
-        View view;
+        List<String> list;View view;
         list = new ArrayList<>();
-        list.add("TIRE REPLACEMENT");
-        list.add("ENGINE REPAIR");
-        list.add("POOP CLEANING");
-        list.add("BATTERY REPLACEMENT");
-        list.add("BRAKE REPAIR");
-        list.add("OTHER SERVICE");
+        list.add("TIRE REPLACEMENT");list.add("ENGINE REPAIR");
+        list.add("POOP CLEANING");list.add("BATTERY REPLACEMENT");
+        list.add("BRAKE REPAIR");list.add("OTHER SERVICE");
         adapter = new ArrayAdapter<String>(getContext(), R.layout.spinner_item, list);
         serviceType.setAdapter(adapter);
     }
 
-    public void toMaps(){
+    public void toMaps(String services,String desc, String cost){
         intent = new Intent(getContext(),MapsMarkerActivity.class);
+        intent.putExtra("services",services);intent.putExtra("desc",desc);intent.putExtra("cost",cost);
         startActivity(intent);
         getActivity().finish();
     }

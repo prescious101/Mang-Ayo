@@ -26,7 +26,6 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.home_fragment, container, false);
         showLocation = view.findViewById(R.id.txtLocation);
-        linearLayout = view.findViewById(R.id.LnrLocate);
 
         String address = "Pls Enable Location Settings First";
         sharedPreferences = getContext().getSharedPreferences("MySharedPref", Context.MODE_APPEND);

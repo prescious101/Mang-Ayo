@@ -38,7 +38,7 @@ import java.util.List;
 
 public class RegistrationMechanicsFragment extends Fragment {
     private String user, pass, firstName, lastName, phone, specialty, type,address;
-    private String urlString = "http://192.168.254.104:9999/Mangayo-Admin/mobileRegisterUser.php";
+    private String urlString = "http://192.168.1.217:9999/Mangayo-Admin/mobileRegisterUser.php";
     private int status = 0;
     private Intent intent;
     private SharedPreferences sharedPreferences;

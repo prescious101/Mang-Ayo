@@ -1,5 +1,7 @@
 package com.example.mangayo;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -27,6 +29,9 @@ import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import Service.BackgroundService;
+import Service.ForegroundService;
+
 public class LoginController extends AppCompatActivity {
     private String urlString, message, user, pass, type;
     private EditText password, email;private Intent intent;
@@ -44,7 +49,6 @@ public class LoginController extends AppCompatActivity {
         password = (EditText) findViewById(R.id.edtPassword);
         Button signIn = (Button) findViewById(R.id.btnSignIn);
         TextView register = (TextView) findViewById(R.id.txtSignUp);
-
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -89,7 +93,7 @@ public class LoginController extends AppCompatActivity {
 
     public void login() {
         Toast.makeText(LoginController.this, user + " " + pass + " " + type, Toast.LENGTH_SHORT).show();
-        urlString = "http://192.168.254.114:9999/Mangayo-Admin/loginCheck.php?username=" + user + "&password=" + pass + "&userType=" + type;
+        urlString = "http://192.168.1.217:9999/Mangayo-Admin/mobile/loginCheck.php?username=" + user + "&password=" + pass + "&userType=" + type;
         try {
             Log.d("URL", urlString);
             URL url = new URL(urlString);
@@ -108,9 +112,12 @@ public class LoginController extends AppCompatActivity {
                         finish();
                         break;
                     case "MECHANIC":
+                    if(!foregroundServiceRunning()){
+                        startService();
                         intent = new Intent(this, MechanicHomepage.class);
                         startActivity(intent);
                         finish();
+                    }
                         break;
                 }
             }
@@ -120,6 +127,23 @@ public class LoginController extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void startService(){
+        if(!foregroundServiceRunning()) {
+            intent = new Intent(this, ForegroundService.class);
+            startService(intent);
+        }
+    }
+
+    public boolean foregroundServiceRunning(){
+        ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for(ActivityManager.RunningServiceInfo serviceInfo : am.getRunningServices(Integer.MAX_VALUE)){
+            if(ForegroundService.class.getName().equals(serviceInfo.service.getClassName())){
+                return true;
+            }
+        }
+        return false;
     }
 
     public void sharedPref() {
@@ -135,5 +159,11 @@ public class LoginController extends AppCompatActivity {
         intent = new Intent(this, RegisterController.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        stopService(new Intent(this,ForegroundService.class));
     }
 }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/dodgerBlue"
     android:orientation="vertical"
-    tools:context=".HomepageController">
+    tools:context=".TransactionDetails">
 
     <TextView
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
         android:textSize="20sp"
         android:gravity="center"
         android:textStyle="bold"
-        android:text="SELECT SERVICE"
+        android:text="TRANSACTION DETAILS"
         android:ems="10"/>
 
     <ScrollView
@@ -31,16 +31,18 @@
             android:orientation="vertical" >
 
 
-            <Spinner
+            <TextView
                 android:id="@+id/spnServices"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginBottom="20dp"
                 android:ems="10"
-                android:layout_gravity="center"
-                android:popupBackground="@color/white"
-                android:theme="@style/mySpinnerItemStyle"
-                android:spinnerMode="dropdown"/>
+                android:text="TIRE REPAIR"
+                android:gravity="center"
+                android:textColor="@color/white"
+
+                android:textSize="20sp"
+                android:layout_gravity="center"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -59,7 +61,6 @@
                 android:layout_height="350dp"
                 android:ems="10"
                 android:textColor="@color/black"
-                android:hint="Desription here"
                 android:background="@color/white"
                 android:gravity="start|top"
                 android:inputType="text|textMultiLine" />
@@ -96,11 +97,22 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Spinner
+                android:id="@+id/spnPaymentType"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:layout_gravity="center"
+                android:popupBackground="@color/white"
+                android:theme="@style/mySpinnerItemStyle"
+                android:spinnerMode="dropdown"/>
             <Button
                 android:id="@+id/btnAddService"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Find Nearby Mechanic"
+                android:text="CONFIRM TRANSACTION"
                 android:textColor="@color/white"
                 android:ems="10"
                 android:backgroundTint="@color/crimsonRed"/>

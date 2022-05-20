@@ -49,8 +49,11 @@ public class MechanicHomepage extends AppCompatActivity {
     public static final int DEFAULT_UPDATE_INTERVAL = 30;
     public static final int PERMISSIONS_FINE_LOCATION = 99;
 
+    private String urlString = "http://192.168.50.169:9999/Mangayo-Admin/mobile/addMechanicLocation.php";
+
+
     private SharedPreferences sharedPreferences;
-    private String currentLocation = "didn't get location",type,email,mechanicData,urlString,mechanic_id;
+    private String currentLocation = "didn't get location",type,email,mechanicData, mechanic_id,lat,lng,mAddress;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private LocationRequest locationRequest;
     private BottomNavigationView bottomNavigationView;
@@ -67,19 +70,16 @@ public class MechanicHomepage extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation_mechanic);
         getSupportFragmentManager().beginTransaction().replace(R.id.mechanicContainer, mechanicHomepageFragment).commit();
         bottomNavigationView.setSelectedItemId(R.id.homeMechanic);
-
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
-
-        setLocationRequest(); updateGPS();
-
         sharedPreferences = this.getSharedPreferences("MySharedPref", Context.MODE_APPEND);
         type = sharedPreferences.getString("userType", "");
         email = sharedPreferences.getString("email", "");
-        Log.d("TAG SHARED", "onCreate: "+ type + email);
 
-        getUserData();
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        getUserData();setLocationRequest();updateGPS();
+
+
 
         BadgeDrawable badgeDrawable = bottomNavigationView.getOrCreateBadge(R.id.bookingMechanic);
         badgeDrawable.setVisible(true);
@@ -139,8 +139,10 @@ public class MechanicHomepage extends AppCompatActivity {
                     Geocoder geocoder = new Geocoder(MechanicHomepage.this);
                     try {
                         List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                        sharedPref(addresses.get(0).getAddressLine(0),String.valueOf(addresses.get(0).getLatitude()),String.valueOf(addresses.get(0).getLongitude()));
-
+                        mAddress = addresses.get(0).getAddressLine(0);
+                        lat = String.valueOf(addresses.get(0).getLatitude());
+                        lng =String.valueOf(addresses.get(0).getLongitude());
+                        sharedPref(mAddress,lat,lng,mechanic_id);
                     } catch (Exception e) {
                         Log.d("TAG", "updateUIValues: "+ e);
                     }
@@ -158,7 +160,7 @@ public class MechanicHomepage extends AppCompatActivity {
         }
     }
 
-    public void sharedPref(String address, String latitude , String longitude) {
+    public void sharedPref(String address, String latitude , String longitude, String mechanic_id) {
         SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
         SharedPreferences.Editor myEdit = sharedPreferences.edit();
         myEdit.putString("mechLocation", address);
@@ -169,20 +171,20 @@ public class MechanicHomepage extends AppCompatActivity {
     }
 
     public void getUserData(){
-        urlString="http://192.168.254.114:9999/Mangayo-Admin/getUserProfile.php?email="+email+"&userType="+type;
+        urlString2 += "?latitude=" + lat + "&longitude=" + lng + "&address=" + address + "&mechanic_id=" + mechanic_id;
         try {
             Log.d("URL",urlString);
             URL url =new URL(urlString);
             HttpURLConnection conn= (HttpURLConnection) url.openConnection();
             BufferedReader br=new BufferedReader(new InputStreamReader(conn.getInputStream()));
             mechanicData=br.readLine();
-            Log.d("MechanicHompage", "data: "+ mechanicData);
             br.close();conn.disconnect();
 
             JSONObject userData = new JSONObject(mechanicData);
-            JSONObject userView = userData.getJSONObject("mechanic");
-            Log.d("Mechanic", "getUserData: "+ userView.getString("mechanic_id"));
-            mechanic_id = userView.getString("mechanic_id");
+            JSONArray userView = userData.getJSONArray("mechanic");
+            JSONObject json = userView.getJSONObject(0);
+            mechanic_id = json.getString("mechanic_id");
+
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

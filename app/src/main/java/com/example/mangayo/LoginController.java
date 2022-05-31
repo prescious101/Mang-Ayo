@@ -96,7 +96,7 @@ public class LoginController extends AppCompatActivity {
 
     public void login() {
         Toast.makeText(LoginController.this, user + " " + pass + " " + type, Toast.LENGTH_SHORT).show();
-        urlString = "http://192.168.1.217:9999/Mangayo-Admin/mobile/loginCheck.php?username=" + user + "&password=" + pass + "&userType=" + type;
+        urlString = "http://192.168.254.113:9999/Mangayo-Admin/mobile/loginCheck.php?username=" + user + "&password=" + pass + "&userType=" + type;
         try {
             Log.d("URL", urlString);
             URL url = new URL(urlString);

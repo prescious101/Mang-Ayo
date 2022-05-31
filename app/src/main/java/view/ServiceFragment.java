@@ -42,7 +42,7 @@ public class ServiceFragment extends Fragment {
     private EditText serviceDescription;
     private TextView serviceCost;
     private Button addService;
-    private String urlString = "http://192.168.1.217:9999/Mangayo-Admin/mobileServices.php";
+    private String urlString = "http://192.168.254.113:9999/Mangayo-Admin/mobileServices.php";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,11 +63,11 @@ public class ServiceFragment extends Fragment {
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 switch (arg0.getItemAtPosition(arg2).toString()){
                     case "TIRE REPLACEMENT":serviceCost.setText("100.00 PHP");break;
-                    case "ENGINE REPAIR":serviceCost.setText("200.00 PHP");break;
-                    case "POOP CLEANING":serviceCost.setText("300.00 PHP");break;
-                    case "BATTERY REPLACEMENT":serviceCost.setText("400.00 PHP");break;
-                    case "BRAKE REPAIR":serviceCost.setText("500.00 PHP");break;
-                    case "OTHER SERVICE":serviceCost.setText("600.00 PHP");break;
+                    case "ENGINE REPAIR":serviceCost.setText("100.00 PHP");break;
+                    case "POOP CLEANING":serviceCost.setText("100.00 PHP");break;
+                    case "BATTERY REPLACEMENT":serviceCost.setText("100.00 PHP");break;
+                    case "BRAKE REPAIR":serviceCost.setText("100.00 PHP");break;
+                    case "OTHER SERVICE":serviceCost.setText("TBA");break;
                 }
 
             }

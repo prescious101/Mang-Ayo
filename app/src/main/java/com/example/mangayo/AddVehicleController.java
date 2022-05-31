@@ -77,9 +77,6 @@ public class AddVehicleController extends AppCompatActivity {
                 startActivityForResult(intent, 3);
             }
         });
-
-
-
     }
 
 
@@ -106,7 +103,7 @@ public class AddVehicleController extends AppCompatActivity {
     }
 
     public void setSaveVehicleData(){
-        urlString="http://192.168.1.217:9999/Mangayo-Admin/mobileAddVehicle.php?brand="+brand+"&model="+model+"&fuel="+fuel+
+        urlString="http://192.168.254.113:9999/Mangayo-Admin/mobileAddVehicle.php?brand="+brand+"&model="+model+"&fuel="+fuel+
                 "&vehicle_image="+fuel;
         try {
             Log.d("URL",urlString);

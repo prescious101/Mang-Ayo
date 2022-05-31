@@ -8,12 +8,10 @@ import android.os.StrictMode;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -25,7 +23,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -38,7 +35,6 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.ref.ReferenceQueue;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -49,11 +45,11 @@ public class MechanicHomepage extends AppCompatActivity {
     public static final int DEFAULT_UPDATE_INTERVAL = 30;
     public static final int PERMISSIONS_FINE_LOCATION = 99;
 
-    private String urlString = "http://192.168.1.217:9999/Mangayo-Admin/mobile/addMechanicLocation.php";
+    private String urlString = "http://192.168.254.113:9999/Mangayo-Admin/mobile/addMechanicLocation.php";
 
 
     private SharedPreferences sharedPreferences;
-    private String currentLocation = "didn't get location",type,email,mechanicData, mechanic_id,lat,lng,mAddress;
+    private String currentLocation = "didn't get location",type,email,message, mechanic_id,lat,lng,mAddress;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private LocationRequest locationRequest;
     private BottomNavigationView bottomNavigationView;
@@ -67,9 +63,11 @@ public class MechanicHomepage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mechanic_homepage);
+        getSupportActionBar().hide();
         bottomNavigationView = findViewById(R.id.bottom_navigation_mechanic);
         getSupportFragmentManager().beginTransaction().replace(R.id.mechanicContainer, mechanicHomepageFragment).commit();
         bottomNavigationView.setSelectedItemId(R.id.homeMechanic);
+
         sharedPreferences = this.getSharedPreferences("MySharedPref", Context.MODE_APPEND);
         type = sharedPreferences.getString("userType", "");
         email = sharedPreferences.getString("email", "");
@@ -77,9 +75,8 @@ public class MechanicHomepage extends AppCompatActivity {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        getUserData();setLocationRequest();updateGPS();
-
-
+        setLocationRequest();
+        updateGPS();
 
         BadgeDrawable badgeDrawable = bottomNavigationView.getOrCreateBadge(R.id.bookingMechanic);
         badgeDrawable.setVisible(true);
@@ -130,7 +127,6 @@ public class MechanicHomepage extends AppCompatActivity {
     }
 
     public void updateGPS() {
-        //GET user permission first
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(MechanicHomepage.this);
         if (ActivityCompat.checkSelfPermission(MechanicHomepage.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             fusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
@@ -143,6 +139,7 @@ public class MechanicHomepage extends AppCompatActivity {
                         lat = String.valueOf(addresses.get(0).getLatitude());
                         lng =String.valueOf(addresses.get(0).getLongitude());
                         sharedPref(mAddress,lat,lng,mechanic_id);
+                        setMechanicLocation();
                     } catch (Exception e) {
                         Log.d("TAG", "updateUIValues: "+ e);
                     }
@@ -170,29 +167,23 @@ public class MechanicHomepage extends AppCompatActivity {
         myEdit.commit();
     }
 
-    public void getUserData(){
-        urlString += "?latitude=" + lat + "&longitude=" + lng + "&address=" + mAddress + "&mechanic_id=" + mechanic_id;
+    public void setMechanicLocation(){
+        urlString += "?latitude=" + lat + "&longitude=" + lng + "&address=" + mAddress + "&email=" + email;
         try {
             Log.d("URL",urlString);
             URL url =new URL(urlString);
             HttpURLConnection conn= (HttpURLConnection) url.openConnection();
             BufferedReader br=new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            mechanicData=br.readLine();
+            message = br.readLine();
             br.close();conn.disconnect();
-
-            JSONObject userData = new JSONObject(mechanicData);
-            JSONArray userView = userData.getJSONArray("mechanic");
-            JSONObject json = userView.getJSONObject(0);
-            mechanic_id = json.getString("mechanic_id");
-
+            Toast.makeText(this, message , Toast.LENGTH_LONG).show();
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (JSONException e){
-            e.printStackTrace();
         }
+
     }
 
 }

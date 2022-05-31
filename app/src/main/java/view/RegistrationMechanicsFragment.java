@@ -38,7 +38,7 @@ import java.util.List;
 
 public class RegistrationMechanicsFragment extends Fragment {
     private String user, pass, firstName, lastName, phone, specialty, type,address;
-    private String urlString = "http://192.168.1.217:9999/Mangayo-Admin/mobile/mobileRegisterUser.php";
+    private String urlString = "http://192.168.254.113:9999/Mangayo-Admin/mobile/mobileRegisterUser.php";
     private int status = 0;
     private Intent intent;
     private SharedPreferences sharedPreferences;
@@ -152,8 +152,8 @@ public class RegistrationMechanicsFragment extends Fragment {
             URL url = new URL(urlString);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String message = "SUCCESSFULLY ADDED";
-//            String message = br.readLine();
+//            String message = "SUCCESSFULLY ADDED";
+            String message = br.readLine();
             Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
             br.close();conn.disconnect();
             if(message == "SUCCESSFULLY ADDED") {

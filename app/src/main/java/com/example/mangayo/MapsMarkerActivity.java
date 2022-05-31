@@ -49,6 +49,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import model.AutoMechanicModel;
 import model.LocationModel;
 
 public class MapsMarkerActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -121,7 +122,6 @@ public class MapsMarkerActivity extends AppCompatActivity implements OnMapReadyC
                 LatLng pos = marker.getPosition();
                 if (!marker.getTitle().equals("You're Here")) {
                     confirmationDialogue(marker.getTitle().replaceAll("Mechanic ID:","").toString());
-                    Toast.makeText(MapsMarkerActivity.this, marker.getTitle().toString(), Toast.LENGTH_SHORT).show();
                 } else
                     Toast.makeText(MapsMarkerActivity.this, "This is Your location", Toast.LENGTH_SHORT).show();
                 return false;
@@ -131,12 +131,12 @@ public class MapsMarkerActivity extends AppCompatActivity implements OnMapReadyC
     }
     @Override
     public void onBackPressed() {
-
+        super.onBackPressed();
     }
 
     public void confirmationDialogue(String mechanic_id) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Choose this Mechanic?");
+        alertDialogBuilder.setMessage("View Mechanic Details?");
         alertDialogBuilder.setPositiveButton("YES",
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -164,7 +164,7 @@ public class MapsMarkerActivity extends AppCompatActivity implements OnMapReadyC
     }
 
     public void getAutoMechanicLocations() {
-        String urlString = "http://192.168.1.217:9999/Mangayo-Admin/getNearbyMechanicLocation.php";
+        String urlString = "http://192.168.254.113:9999/Mangayo-Admin/mobile/getNearbyMechanicLocation.php";
         try {
             URL url = new URL(urlString);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();

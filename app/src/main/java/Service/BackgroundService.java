@@ -57,7 +57,7 @@ public class BackgroundService extends Service {
     }
 
     public void getService(){
-        urlString="http://192.168.254.114:9999/Mangayo-Admin/mobile/getService.php?mechanic_id="+mechanic_id;
+        urlString="http://192.168.254.113:9999/Mangayo-Admin/mobile/getService.php?mechanic_id="+mechanic_id;
         try {
             Log.d("URL",urlString);
             URL url =new URL(urlString);

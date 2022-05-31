@@ -57,7 +57,7 @@ public class ForegroundService extends Service {
     }
 
     public void getService(){
-        urlString="http://192.168.254.104:9999/Mangayo-Admin/mobile/getService.php?mechanic_id="+mechanic_id;
+        urlString="http://192.168.254.113:9999/Mangayo-Admin/mobile/getService.php?mechanic_id="+mechanic_id;
         try {
             URL url =new URL(urlString);
             HttpURLConnection conn= (HttpURLConnection) url.openConnection();

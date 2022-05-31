@@ -1,15 +1,39 @@
 package model;
 
 public class AutoMechanicModel {
-    private String id,fName, lName, email, address, specialty;
+    private String id,fName, lName, email, address, specialty, phoneNum;
 
-    public AutoMechanicModel(String id, String fName, String lName, String email, String address, String specialty) {
-        this.id = id;
+
+    public  AutoMechanicModel(){
+
+    }
+
+//    public AutoMechanicModel(String id, String fName, String lName, String email, String address, String specialty) {
+//        this.id = id;
+//        this.fName = fName;
+//        this.lName = lName;
+//        this.email = email;
+//        this.address = address;
+//        this.specialty = specialty;
+//    }
+
+    public AutoMechanicModel( String fName, String lName, String email,String phoneNum, String address, String specialty) {
+        this.phoneNum = phoneNum;
         this.fName = fName;
         this.lName = lName;
         this.email = email;
         this.address = address;
         this.specialty = specialty;
+    }
+
+
+
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
     }
 
     public String getId() {

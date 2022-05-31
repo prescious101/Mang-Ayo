@@ -43,7 +43,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 //, GoogleMap.OnPolylineClickListener, GoogleMap.OnPolygonClickListener
 
 public class MechanicHomepageFragment extends Fragment implements OnMapReadyCallback {
-    private String address, lat, lng, lat2="init", lng2="init", mechanic_id, user_id;
+    private String address, lat, lng, lat2, lng2, mechanic_id, user_id;
     private SharedPreferences sharedPreferences;
     private TextView setLocation;
     private MapView mapView;
@@ -65,10 +65,10 @@ public class MechanicHomepageFragment extends Fragment implements OnMapReadyCall
         lat = sharedPreferences.getString("mechLatitude", "");
         lng = sharedPreferences.getString("mechLongitude", "");
         mechanic_id = sharedPreferences.getString("mechanic_id", "");
+        user_id = sharedPreferences.getString("user_id", "");
         setCurrentMechanicLocation();
         setLocation.setText(address);
-        sharedPreferences = getContext().getSharedPreferences("MySharedPref", Context.MODE_APPEND);
-        user_id = sharedPreferences.getString("user_id", "");
+
 
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mechanicMap);
         mapFragment.getMapAsync(this);
@@ -87,14 +87,14 @@ public class MechanicHomepageFragment extends Fragment implements OnMapReadyCall
                 Double.parseDouble(lng)), 15));
 
         googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(10.26427842824107, 123.8384620855812))
+                .position(new LatLng(10.3043409, 123.943074))
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
                 .title("Vehicle Location"));
 
         Polyline polyline1 = googleMap.addPolyline(new PolylineOptions()
                 .clickable(true)
                 .add(new LatLng(Double.parseDouble(lat), Double.parseDouble(lng)),
-                        new LatLng(10.26427842824107, 123.8384620855812)));
+                        new LatLng(10.3043409, 123.943074)));
 
 
         googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -111,12 +111,12 @@ public class MechanicHomepageFragment extends Fragment implements OnMapReadyCall
 
     public void confirmationDialogue() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
-        alertDialogBuilder.setMessage("Accept Booking?");
+        alertDialogBuilder.setMessage("Check Service Details?");
         alertDialogBuilder.setPositiveButton("YES",
                 new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
-                        Intent intent = new Intent(getContext(), TransactionDetails.class);
+                        Intent intent = new Intent(getContext(), UserServiceDetails.class);
                         startActivity(intent);
                         getActivity().finish();
                     }
@@ -134,31 +134,15 @@ public class MechanicHomepageFragment extends Fragment implements OnMapReadyCall
     }
 
     public void setCurrentMechanicLocation() {
-        String urlString2 = "http://192.168.1.217:9999/Mangayo-Admin/mobile/getUserLocation.php";
-        urlString2 += "&user_id=" + user_id;
+        String urlString = "http://192.168.254.113:9999/Mangayo-Admin/mobile/getUserLocation.php?user_id="+ user_id;
 
         try {
-            URL url = new URL(urlString2);
+            URL url = new URL(urlString);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String message = br.readLine();
             br.close();
             conn.disconnect();
-
-//            URL url2 = new URL(urlString2);
-//            HttpURLConnection conn2 = (HttpURLConnection) url2.openConnection();
-//            BufferedReader br2 = new BufferedReader(new InputStreamReader(conn2.getInputStream()));
-//            String message2 = br2.readLine();
-//            br2.close();
-//            conn2.disconnect();
-//            if (message2 != null) {
-//                JSONObject serviceData = new JSONObject(message2);
-//                JSONArray serviceView = serviceData.getJSONArray("user_location");
-//                JSONObject json = serviceView.getJSONObject(0);
-//                lat2 = json.getString("latitude");
-//                lng2 = json.getString("longitude");
-//                Log.d("SERVICE", "Pending Service(s): " + lat2);
-//            }
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

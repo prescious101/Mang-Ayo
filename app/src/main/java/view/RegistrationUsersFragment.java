@@ -34,7 +34,7 @@ public class RegistrationUsersFragment extends Fragment {
     private EditText usernameEDT, passwordEDT, firstNameEDT, lastNameEDT, phoneNumberEDT, addressEDT;
     private Button registerUserBTN, backBTN;
     private int status = 0;
-    private String urlString = "http://192.168.1.217:9999/Mangayo-Admin/mobile/mobileRegisterUser.php";
+    private String urlString = "http://192.168.254.113:9999/Mangayo-Admin/mobile/mobileRegisterUser.php";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -110,9 +110,10 @@ public class RegistrationUsersFragment extends Fragment {
                 URL url = new URL(urlString);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                String message = br.readLine();
+//                String message = br.readLine();
+                String message = "SUCCESSFULLY ADDED";
                 Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-                br.close();conn.disconnect();toLoginController();
+                br.close();conn.disconnect();
                 if(message == "SUCCESSFULLY ADDED") {
                     toLoginController();
                 }

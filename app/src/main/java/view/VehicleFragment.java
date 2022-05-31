@@ -66,7 +66,7 @@ public class VehicleFragment extends Fragment {
 
     public void getVehicleData() {
         String uid = "31";
-        String urlString = "http://192.168.1.217:9999/Mangayo-Admin/getVehicles.php?userID=" + uid;
+        String urlString = "http://192.168.254.113:9999/Mangayo-Admin/mobile/getVehicles.php?userID=" + uid;
         try {
             URL url = new URL(urlString);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();

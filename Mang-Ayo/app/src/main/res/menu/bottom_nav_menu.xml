@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/vehicles"
+        android:icon="@drawable/car_white"
+        android:title="Vehicles" />
+    <item
+        android:id="@+id/services"
+        android:icon="@drawable/service_white"
+        android:title="Services" />
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/home_icon_white"
+        android:title="Home" />
+    <item
+        android:id="@+id/notification"
+        android:icon="@drawable/notif_white_icon"
+        android:title="Notification" />
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/profile_white_icon"
+        android:title="Profile" />
+</menu>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controller.RegisterController"
+    android:background="@color/dodgerBlue">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edtMechanicUsername"
+                android:layout_width="272dp"
+                android:layout_height="46dp"
+                android:layout_margin="10dp"
+                android:background="@color/white"
+                android:ems="1"
+                android:hint=" Input valid email"
+                android:inputType="textPersonName"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/edtMechanicPassword"
+                android:layout_width="272dp"
+                android:layout_height="46dp"
+                android:background="@color/white"
+                android:ems="1"
+                android:hint=" Input valid password 6 or more"
+                android:inputType="textPassword"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/edtMechanicFirstName"
+                android:layout_width="272dp"
+                android:layout_height="46dp"
+                android:layout_margin="10dp"
+                android:background="@color/white"
+                android:ems="1"
+                android:hint=" Input First Name"
+                android:inputType="textPersonName"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/edtMechanicLastName"
+                android:layout_width="272dp"
+                android:layout_height="46dp"
+                android:background="@color/white"
+                android:ems="1"
+                android:hint=" Input Last Name"
+                android:inputType="textPersonName"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/edtMechanicPhone"
+                android:layout_width="272dp"
+                android:layout_height="46dp"
+                android:layout_margin="10dp"
+                android:background="@color/white"
+                android:ems="1"
+                android:hint=" Input Phone Number"
+                android:inputType="phone"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/edtMechanicAddress"
+                android:layout_width="272dp"
+                android:layout_height="146dp"
+                android:background="@color/white"
+                android:gravity="start"
+                android:ems="1"
+                android:hint=" Input Address"
+                android:inputType="textMultiLine"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="272dp"
+                android:layout_height="46dp"
+                android:layout_margin="10dp"
+                android:textColor="@color/white"
+                android:ems="1"
+                android:gravity="center"
+                android:text="SELECT SPECIALTY"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spnSpecialty"
+                android:layout_width="272dp"
+                android:layout_height="46dp"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:background="@color/white"
+                android:popupBackground="@color/white"
+                android:theme="@style/mySpinnerItemStyle"
+                android:spinnerMode="dropdown" />
+
+            <Button
+                android:id="@+id/btnRegisterMechanic"
+                android:layout_width="260dp"
+                android:layout_height="67dp"
+                android:backgroundTint="@color/crimsonRed"
+                android:gravity="center"
+                android:text="REGISTER"
+                android:textColor="@color/white" />
+
+
+            <Button
+                android:id="@+id/btnMechanicBack"
+                android:layout_width="260dp"
+                android:layout_height="67dp"
+                android:backgroundTint="@color/crimsonRed"
+                android:text="Back"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

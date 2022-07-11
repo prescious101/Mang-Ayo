@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeMechanic"
+        android:icon="@drawable/home_icon_white"
+        android:title="Home" />
+    <item
+        android:id="@+id/bookingMechanic"
+        android:icon="@drawable/service_white"
+        android:title="Booking" />
+    <item
+        android:id="@+id/schedulingMechanic"
+        android:icon="@drawable/car_white"
+        android:title="Scheduling" />
+    <item
+        android:id="@+id/profileMechanic"
+        android:icon="@drawable/profile_white_icon"
+        android:title="Profile" />
+
+</menu>

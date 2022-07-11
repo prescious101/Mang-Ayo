@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dodgerBlue"
+    android:orientation="vertical"
+    tools:context=".controller.HomepageController">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:textColor="@color/white"
+        android:background="@color/crimsonRed"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:text="SELECT SERVICE"
+        android:ems="10"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical" >
+
+
+            <Spinner
+                android:id="@+id/spnServices"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:layout_gravity="center"
+                android:popupBackground="@color/white"
+                android:theme="@style/mySpinnerItemStyle"
+                android:spinnerMode="dropdown"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:layout_marginBottom="20dp"
+                android:textStyle="bold"
+                android:text="SERVICE DESCRIPTION"
+                android:ems="10"/>
+
+            <EditText
+                android:id="@+id/editTextTextMultiLine"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:ems="10"
+                android:textColor="@color/black"
+                android:hint="Desription here"
+                android:background="@color/white"
+                android:gravity="start|top"
+                android:inputType="text|textMultiLine" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="30dp">
+
+                <TextView
+                    android:id="@+id/txtServiceCost"
+                    android:layout_width="103dp"
+                    android:layout_height="30dp"
+                    android:ems="10"
+                    android:text="0.00 PHP"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/txtview1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtview1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="SERVICE COST :"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/btnAddService"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Find Nearby Mechanic"
+                android:textColor="@color/white"
+                android:ems="10"
+                android:backgroundTint="@color/crimsonRed"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dodgerBlue"
+    android:orientation="vertical"
+    tools:context=".controller.RegisterController">
+
+    <RelativeLayout
+        android:id="@+id/mangAyoLogo"
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/mang_ayo_logo"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="272dp"
+        android:layout_height="46dp"
+        android:layout_margin="10dp"
+        android:ems="10"
+        android:layout_gravity="center"
+        android:text="REGISTRATION"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="272dp"
+        android:layout_height="46dp"
+        android:layout_margin="10dp"
+        android:ems="10"
+        android:layout_gravity="center"
+        android:text="SELECT USER TYPE"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+    <Spinner
+        android:id="@+id/spnUser"
+        android:layout_width="272dp"
+        android:layout_height="46dp"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:popupBackground="@color/white"
+        android:theme="@style/mySpinnerItemStyle"
+        android:spinnerMode="dropdown" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/registerContainer" />
+
+
+
+
+</LinearLayout>

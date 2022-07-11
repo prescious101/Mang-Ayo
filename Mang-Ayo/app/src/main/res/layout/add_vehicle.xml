@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dodgerBlue">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edtVehicleBrand"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Input Vehicle Name" />
+
+
+        <EditText
+            android:id="@+id/edtVehicleModel"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Input Vehicle Model" />
+
+        <EditText
+            android:id="@+id/edtFuelType"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Input Fuel Type"/>
+
+        <Button
+            android:id="@+id/btnUploadVehicleImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            android:text="UPLOAD VEHICLE IMAGE" />
+
+        <ImageView
+            android:id="@+id/imgvVehicleImage"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="10dp"/>
+
+        <Button
+            android:id="@+id/btnSaveVehicle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/crimsonRed"
+            android:textColor="@color/white"
+            android:text="Save Vehicle Data" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

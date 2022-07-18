@@ -1,6 +1,7 @@
 package com.example.mangayo.controller;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mangayo.R;
+import com.example.mangayo.util.Url;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -35,6 +37,9 @@ public class AddVehicleController extends AppCompatActivity {
     private Intent intent;
     private Uri filePath;
     private Bitmap bitmap;
+    private SharedPreferences sharedPreferences;
+    private static final int PICK_IMAGE = 100;
+    Uri uriValidId;
 
 
     @Override
@@ -68,25 +73,27 @@ public class AddVehicleController extends AppCompatActivity {
         getVehicleImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                Intent intent = new Intent(); //blind intent
                 intent.setType("image/*");
-                startActivityForResult(intent, 3);
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
             }
         });
     }
 
-
-    protected void onActivityResult(int requestCode, int resultCode,Intent data) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode == RESULT_OK && data!=null){
-            try{
-                filePath = data.getData();
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-                setVehiclePhoto.setImageURI(filePath);
-            }catch (IOException e){
+        if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
+            uriValidId = data.getData();
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uriValidId);
+                setVehiclePhoto.setImageURI(uriValidId);
+            } catch (IOException e) {
                 e.printStackTrace();
             }
+
         }
     }
 
@@ -99,8 +106,7 @@ public class AddVehicleController extends AppCompatActivity {
     }
 
     public void setSaveVehicleData(){
-        urlString="http://192.168.254.113:9999/Mangayo-Admin/mobileAddVehicle.php?brand="+brand+"&model="+model+"&fuel="+fuel+
-                "&vehicle_image="+fuel;
+        urlString= Url.addVehicle + "brand="+brand+"&model="+model+"&fuel="+fuel;
         try {
             Log.d("URL",urlString);
             URL url=new URL(urlString);

@@ -25,6 +25,7 @@ import java.net.URL;
 
 import com.example.mangayo.R;
 import com.example.mangayo.controller.UserServiceDetails;
+import com.example.mangayo.util.Url;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -76,33 +77,33 @@ public class MechanicHomepageFragment extends Fragment implements OnMapReadyCall
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
-        LatLng currentLocation = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
-        googleMap.addMarker(new MarkerOptions()
-                .position(currentLocation)
-                .title("You're Here"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(lat),
-                Double.parseDouble(lng)), 15));
-
-        googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(10.3043409, 123.943074))
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                .title("Vehicle Location"));
-
-        Polyline polyline1 = googleMap.addPolyline(new PolylineOptions()
-                .clickable(true)
-                .add(new LatLng(Double.parseDouble(lat), Double.parseDouble(lng)),
-                        new LatLng(10.3043409, 123.943074)));
-
-
-        googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(@NonNull Marker marker) {
-                if (marker.getTitle().toString().equals("Vehicle Location")){
-                    confirmationDialogue();
-                    return true;
-                }else return false;
-            }
-        });
+//        LatLng currentLocation = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
+//        googleMap.addMarker(new MarkerOptions()
+//                .position(currentLocation)
+//                .title("You're Here"));
+//        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(lat),
+//                Double.parseDouble(lng)), 15));
+//
+//        googleMap.addMarker(new MarkerOptions()
+//                .position(new LatLng(10.3043409, 123.943074))
+//                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+//                .title("Vehicle Location"));
+//
+//        Polyline polyline1 = googleMap.addPolyline(new PolylineOptions()
+//                .clickable(true)
+//                .add(new LatLng(Double.parseDouble(lat), Double.parseDouble(lng)),
+//                        new LatLng(10.3043409, 123.943074)));
+//
+//
+//        googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+//            @Override
+//            public boolean onMarkerClick(@NonNull Marker marker) {
+//                if (marker.getTitle().toString().equals("Vehicle Location")){
+//                    confirmationDialogue();
+//                    return true;
+//                }else return false;
+//            }
+//        });
 
     }
 
@@ -131,7 +132,7 @@ public class MechanicHomepageFragment extends Fragment implements OnMapReadyCall
     }
 
     public void setCurrentMechanicLocation() {
-        String urlString = "http://192.168.254.113:9999/Mangayo-Admin/mobile/getUserLocation.php?user_id="+ user_id;
+        String urlString = Url.getMechanicLoc + user_id;
 
         try {
             URL url = new URL(urlString);

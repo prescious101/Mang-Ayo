@@ -3,9 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/matt/AndroidStudioProjects/Mang-Ayo/app/src/main/res/drawable/rounded_white.xml" value="0.179" />
         <entry key="..\:/Users/matt/AndroidStudioProjects/Mang-Ayo/app/src/main/res/layout/home_fragment.xml" value="0.16983695652173914" />
+        <entry key="..\:/Users/matt/AndroidStudioProjects/Mang-Ayo/app/src/main/res/layout/homepage.xml" value="0.2671875" />
+        <entry key="..\:/Users/matt/AndroidStudioProjects/Mang-Ayo/app/src/main/res/layout/map_store_location.xml" value="0.2671875" />
         <entry key="..\:/Users/matt/AndroidStudioProjects/Mang-Ayo/app/src/main/res/layout/mechanic_booking_fragment.xml" value="0.1" />
-        <entry key="..\:/Users/matt/AndroidStudioProjects/Mang-Ayo/app/src/main/res/layout/service_fragment.xml" value="0.1" />
+        <entry key="..\:/Users/matt/AndroidStudioProjects/Mang-Ayo/app/src/main/res/layout/mechanic_details.xml" value="0.13496376811594202" />
+        <entry key="..\:/Users/matt/AndroidStudioProjects/Mang-Ayo/app/src/main/res/layout/mechanic_home_fragment.xml" value="0.2671875" />
+        <entry key="..\:/Users/matt/AndroidStudioProjects/Mang-Ayo/app/src/main/res/layout/mechanic_homepage.xml" value="0.13496376811594202" />
+        <entry key="..\:/Users/matt/AndroidStudioProjects/Mang-Ayo/app/src/main/res/layout/mechanic_profile_fragment.xml" value="0.13496376811594202" />
+        <entry key="..\:/Users/matt/AndroidStudioProjects/Mang-Ayo/app/src/main/res/layout/mechanic_scheduling_fragment.xml" value="0.13496376811594202" />
+        <entry key="..\:/Users/matt/AndroidStudioProjects/Mang-Ayo/app/src/main/res/layout/mechanics.xml" value="0.13496376811594202" />
+        <entry key="..\:/Users/matt/AndroidStudioProjects/Mang-Ayo/app/src/main/res/layout/mechanics_list.xml" value="0.13496376811594202" />
+        <entry key="..\:/Users/matt/AndroidStudioProjects/Mang-Ayo/app/src/main/res/layout/notification_fragment.xml" value="0.13496376811594202" />
+        <entry key="..\:/Users/matt/AndroidStudioProjects/Mang-Ayo/app/src/main/res/layout/select_service_fragment.xml" value="0.25" />
+        <entry key="..\:/Users/matt/AndroidStudioProjects/Mang-Ayo/app/src/main/res/layout/service_fragment.xml" value="0.15" />
+        <entry key="..\:/Users/matt/AndroidStudioProjects/Mang-Ayo/app/src/main/res/layout/user_service_details.xml" value="0.2671875" />
+        <entry key="..\:/Users/matt/AndroidStudioProjects/Mang-Ayo/app/src/main/res/layout/vehicle_fragment.xml" value="0.2671875" />
+        <entry key="..\:/Users/matt/AndroidStudioProjects/Mang-Ayo/app/src/main/res/layout/vehicle_list.xml" value="0.2671875" />
       </map>
     </option>
   </component>

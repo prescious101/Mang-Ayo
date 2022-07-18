@@ -158,7 +158,6 @@ public class MapsMarkerActivity extends AppCompatActivity implements OnMapReadyC
     }
 
     public void getAutoMechanicLocations() {
-        //String urlString = "http://192.168.254.113:9999/Mangayo-Admin/mobile/getNearbyMechanicLocation.php";
         try {
             URL url = new URL(Url.mechanicLoc);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();

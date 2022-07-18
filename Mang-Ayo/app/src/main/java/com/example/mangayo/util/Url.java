@@ -12,4 +12,6 @@ public class Url {
     public static  String getVehicleDetails = api + "/getVehicles.php?userID=";
     public static  String getMechaniDetails = api + "/getDetails.php";
     public static  String addBookingMechanic = api + "/addBooking.php";
+    public static  String addVehicle = api + "/mobileAddVehicle.php?";
+    public static  String getMechanicLoc = api + "/getUserLocation.php?user_id=";
 }

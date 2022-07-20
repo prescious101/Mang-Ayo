@@ -1,28 +1,24 @@
 <?php
 
+if ($_SERVER['REQUEST_METHOD']=='POST') {
 	$db = mysqli_connect('localhost','root','','mangayo_db');$ok;
-	$t=time();
-	$date = date("Y_m_d",$t);
-	$vehicle_brand = trim($_GET['brand']);
-	$vehicle_model = trim($_GET['model']);
-	$vehicle_image = trim($_GET['vehicle_image']);
-	$fuel_type = trim($_GET['fuel']);
-	$name= "sample";
-	$path = "uploads/$name.png";
+	$date = date("dmYHis");
+	$vehicle_brand = trim($_POST['brand']);
+	$vehicle_model = trim($_POST['model']);
+	$vehicle_image = trim($_POST['image']);
+	$fuel_type = trim($_POST['fuel']);
+	$path = "uploads/IMG_$date.png";
 	$actualpath = "http://10.0.2.2/mobile/$path";
 
-	$ok = mysqli_query($db, "INSERT INTO vehicle (vehicle_brand, vehicle_model, fuel_type) 
-		VALUES ('$vehicle_brand', '$vehicle_model', '$fuel_type')");
+	$ok = mysqli_query($db, "INSERT INTO vehicle (vehicle_image, vehicle_brand, vehicle_model, fuel_type) 
+		VALUES ('$actualpath', '$vehicle_brand', '$vehicle_model', '$fuel_type')");
 
-	$message = ($ok)?"SUCCESSFULLY ADDED":"ADDING DATA FAILED";
-	// if($ok){
-	// 	file_put_contents($path,base64_decode($vehicle_image));
-	// 	$message = $ok;
-	// } else {
-	// 	$message = $ok;
-	// }
-	echo $message;
-
-
+	if($ok){
+		file_put_contents($path,base64_decode($vehicle_image));
+		echo $message = "success";
+	} else {
+		echo $message = "failed";
+	}
+	}
 
 ?>

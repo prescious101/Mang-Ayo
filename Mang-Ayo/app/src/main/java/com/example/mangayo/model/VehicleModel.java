@@ -7,14 +7,16 @@ public class VehicleModel {
     private String vehicle_model;
     private String chassis_num;
     private String fuel_type;
+    private String imageUrl;
 
-    public VehicleModel(String vehicle_name, String vehicle_type, String registration_num, String vehicle_model, String chassis_num, String fuel_type) {
+    public VehicleModel(String vehicle_name, String vehicle_type, String registration_num, String vehicle_model, String chassis_num, String fuel_type, String image_url) {
         this.vehicle_name = vehicle_name;
         this.vehicle_type = vehicle_type;
         this.registration_num = registration_num;
         this.vehicle_model = vehicle_model;
         this.chassis_num = chassis_num;
         this.fuel_type = fuel_type;
+        this.imageUrl = image_url;
     }
 
 
@@ -65,5 +67,13 @@ public class VehicleModel {
 
     public void setFuel_type(String fuel_type) {
         this.fuel_type = fuel_type;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

@@ -18,6 +18,13 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.mangayo.R;
 import com.example.mangayo.util.Url;
 
@@ -28,6 +35,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddVehicleController extends AppCompatActivity {
     private EditText vehicleBrand,vehicleModel,fuelType;
@@ -106,26 +115,37 @@ public class AddVehicleController extends AppCompatActivity {
     }
 
     public void setSaveVehicleData(){
-        urlString= Url.addVehicle + "brand="+brand+"&model="+model+"&fuel="+fuel;
-        try {
-            Log.d("URL",urlString);
-            URL url=new URL(urlString);
-            HttpURLConnection conn= (HttpURLConnection) url.openConnection();
-            BufferedReader br=new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            message=br.readLine();
-            Log.d("LoginController", "addVehicle: "+message);
-            Toast.makeText(AddVehicleController.this,message, Toast.LENGTH_SHORT).show();
-            br.close();conn.disconnect();
-            intent = new Intent(AddVehicleController.this, HomepageController.class);
-            startActivity(intent);
-            finish();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+        StringRequest request = new StringRequest(Request.Method.POST, Url.addVehicle, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("responseString", response);
+                if(response.equals("success")){
+                    Log.d("success", response);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Not found", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("brand", brand);
+                params.put("model", model);
+                params.put("fuel", fuel);
+                params.put("image", getStringImage(bitmap));
+                return params;
+            }
+        };
 
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(request);
+    }
 
 
 }
